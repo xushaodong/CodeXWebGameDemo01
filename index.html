@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>叠叠消 Tile Crush</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <header class="top-bar">
+        <button id="backBtn" class="ghost">←</button>
+        <div>
+          <h1>🐑 叠叠消</h1>
+          <p id="pageSubtitle">Tile Crush</p>
+        </div>
+        <button id="soundBtn" class="ghost">🔊</button>
+      </header>
+
+      <main id="view"></main>
+
+      <nav class="bottom-nav">
+        <button data-route="/home">首页</button>
+        <button data-route="/map">关卡</button>
+        <button data-route="/shop">商城</button>
+        <button data-route="/rank">排行</button>
+        <button data-route="/profile">我的</button>
+      </nav>
+    </div>
+
+    <template id="splashTpl">
+      <section class="screen splash">
+        <div class="logo">🐑</div>
+        <h2>叠叠消 Tile Crush</h2>
+        <p>资源加载中 <span id="loadPct">0%</span></p>
+        <div class="progress"><div id="loadBar"></div></div>
+        <button id="enterBtn" class="cta" disabled>进入游戏</button>
+      </section>
+    </template>
+
+    <template id="homeTpl">
+      <section class="screen home">
+        <div class="card hero">
+          <p>欢迎回来，玩家001</p>
+          <h2>继续挑战第 <span id="currentLevelTxt"></span> 关</h2>
+          <button class="cta" id="continueBtn">▶ 继续游戏</button>
+        </div>
+        <div class="quick-grid">
+          <button class="card" data-route="/game/1">🎮 开始第1关</button>
+          <button class="card" data-route="/game/daily">🎯 每日挑战</button>
+          <button class="card" data-route="/map">🗺 关卡地图</button>
+          <button class="card" data-route="/settings">⚙️ 设置</button>
+        </div>
+      </section>
+    </template>
+
+    <template id="gameTpl">
+      <section class="screen game">
+        <div class="game-head card">
+          <span id="levelTitle">第1关</span>
+          <div class="progress"><div id="levelProgress"></div></div>
+          <span id="progressText">0%</span>
+        </div>
+
+        <div class="tools card">
+          <button data-tool="undo">↩ 撤回(<span id="undoCount"></span>)</button>
+          <button data-tool="shuffle">🔀 洗牌(<span id="shuffleCount"></span>)</button>
+          <button data-tool="hint">💡 提示(<span id="hintCount"></span>)</button>
+          <button data-tool="revive">❤ 复活(<span id="reviveCount"></span>)</button>
+        </div>
+
+        <div id="board" class="board"></div>
+
+        <div class="tray-wrap">
+          <div id="tray" class="tray"></div>
+          <p id="trayWarn" class="warn hidden">⚠️ 即将满槽</p>
+        </div>
+      </section>
+    </template>
+
+    <template id="resultTpl">
+      <section class="screen result">
+        <div class="card">
+          <h2 id="resultTitle"></h2>
+          <p id="resultDesc"></p>
+          <p>金币奖励：<strong id="resultGold"></strong></p>
+          <div>
+            <button class="cta" id="retryBtn">再试一次</button>
+            <button class="cta secondary" id="nextBtn">下一关</button>
+          </div>
+        </div>
+      </section>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
